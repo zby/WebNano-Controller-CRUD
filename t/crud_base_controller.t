@@ -20,7 +20,7 @@ for my $controller( qw/DvdWithBaseCRUD OwnTemplates/ ){
             my $res;
             $res = $cb->(GET "/$controller/");
             like( $res->content, qr/Jurassic Park II/ );
-            $res = $cb->(POST "/$controller/5/edit", [ name => 'Not Jurassic Park' ] );
+            $res = $cb->(POST "/$controller/5/edit", [ name => 'Not Jurassic Park', owner => 4 ] );
             ok( $res->is_redirect, 'Redirect after POST' );
             $res = $cb->(GET $res->header('Location'));
             $res = $cb->(GET "/$controller/create" );
