@@ -24,6 +24,8 @@ has record_actions => (
 my $FULLPATH;
 BEGIN { use Cwd (); $FULLPATH = Cwd::abs_path(__FILE__) }
 
+sub after_POST { shift->self_url . shift . '/view';  }
+
 sub template_search_path {
     my $self = shift;
     my $mydir = $FULLPATH;
@@ -92,7 +94,7 @@ sub create_action {
     if( $req->method eq 'POST' && $form->process() ){
         my $record = $form->item;
         my $res = $req->new_response();
-        $res->redirect( $self->self_url . $record->id . '/view' );
+        $res->redirect( $self->after_POST( $record->id ) );
         return $res;
     }
     $form->field( 'submit' )->value( 'Create' );
@@ -129,7 +131,7 @@ sub edit {
     );
     if( $req->method eq 'POST' && $form->process() ){
         my $res = $req->new_response();
-        $res->redirect( $self->self_url . $record->id . '/view' );
+        $res->redirect( $self->after_POST( $record->id ) );
         return $res;
     }
     $form->field( 'submit' )->value( 'Update' );
