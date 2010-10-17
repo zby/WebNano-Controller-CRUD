@@ -2,7 +2,7 @@ package MyApp::Controller;
 
 use Moose;
 use MooseX::NonMoose;
-extends 'WebNano::Controller';
+extends 'WebNano::DirController';
 
 sub index_action {
     my $self = shift;
