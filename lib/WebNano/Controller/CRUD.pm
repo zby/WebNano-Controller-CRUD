@@ -79,6 +79,11 @@ sub list_action {
     return $self->render( template => 'list.tt', items => [ $rs->search ] );
 }
 
+sub after_POST {
+    my( $self, @ids ) = @_;
+    return $self->self_url . join( '/', @ids ) . '/view';
+}
+
 sub create_action {
     my ( $self ) = @_;
     my $req = $self->req;
@@ -142,12 +147,41 @@ sub edit {
 
 __END__
 
-=head1 NAME
-
-WebNano::Controller::CRUD - A base controller implementing CRUD operations
+# ABSTRACT:  A base controller implementing CRUD operations (EXPERIMENTAL!)
 
 =head1 SYNOPSIS
 
 use base 'WebNano::Controller::CRUD';
 
+=head1 DESCRIPTION
+
+This is experimental Template Tookit and DBIx::Class based CRUD controller for L<WebNano>
+
+=head1 ATTRIBUTES
+
+=head2 form_class
+
+=head2 rs_name
+
+=head2 record_actions
+
+=head1 METHODS
+
+=head2 create_action
+
+=head2 delete
+
+=head2 edit
+
+=head2 index_action
+
+=head2 list_action
+
+=head2 parse_path
+
+=head2 view
+
+=head2 columns
+
+=head2 after_POST
 
