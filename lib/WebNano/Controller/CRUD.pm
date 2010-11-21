@@ -104,10 +104,6 @@ sub create_action {
     return $self->render( template => 'edit.tt', form => $form->render );
 }
 
-sub index_action {
-    my $self = shift;
-    return $self->list_action;
-}
 
 sub view {
     my ( $self, $record ) = @_;
