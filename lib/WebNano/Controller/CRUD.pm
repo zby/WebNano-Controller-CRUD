@@ -48,7 +48,7 @@ sub columns {
 }
 
 
-sub get_parts {
+sub _get_parts {
     my $self = shift;
     my @args = @_;
     my @pks = @{ $self->primary_columns };
@@ -73,7 +73,7 @@ sub get_parts {
 
 around 'local_dispatch' => sub {
     my( $orig, $self, @args ) = @_;
-    if( my $parsed = $self->get_parts( @args ) ){
+    if( my $parsed = $self->_get_parts( @args ) ){
         my $rs = $self->app->schema->resultset( $self->rs_name );
         my $record = $rs->find( @{ $parsed->{ids} } );
         if( ! $record ) {
