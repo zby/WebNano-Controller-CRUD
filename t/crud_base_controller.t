@@ -14,7 +14,7 @@ for my $controller( qw/DvdWithBaseCRUD OwnTemplates/ ){
     copy('t/data/dvdzbr.db','t/tmp/dvdzbr.db') or die "Copy failed: $!";
 
     test_psgi( 
-        app => MyApp->new()->psgi_callback, 
+        app => MyApp->new()->psgi_app, 
         client => sub {
             my $cb = shift;
             my $res;
@@ -38,7 +38,7 @@ for my $controller( qw/DvdWithBaseCRUD OwnTemplates/ ){
 }
 
 test_psgi( 
-    app => MyApp->new()->psgi_callback, 
+    app => MyApp->new()->psgi_app, 
     client => sub {
         my $cb = shift;
         my $res;
