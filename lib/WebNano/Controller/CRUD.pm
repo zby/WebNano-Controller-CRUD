@@ -108,8 +108,9 @@ sub create_action {
     my $form_class = $self->form_class;
     Class::MOP::load_class( $form_class );
     my $item = $self->app->schema->resultset( $self->rs_name )->new_result( {} );
+    my $params = $req->parameters->as_hashref_mixed;
     my $form = $form_class->new( 
-        params => $req->parameters->as_hashref, 
+        params => $params, 
         schema => $self->app->schema,
         item   => $item,
     );
@@ -148,9 +149,10 @@ sub edit {
     my $req = $self->req;
     my $form_class = $self->form_class;
     Class::MOP::load_class( $form_class );
+    my $params = $req->parameters->as_hashref_mixed;
     my $form = $form_class->new( 
         item   => $record,
-        params => $req->parameters->as_hashref, 
+        params => $params,
     );
     if( $req->method eq 'POST' && $form->process() ){
         my $res = $req->new_response();

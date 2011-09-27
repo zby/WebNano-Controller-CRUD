@@ -33,6 +33,11 @@ for my $controller( qw/DvdWithBaseCRUD OwnTemplates/ ){
             is( $res->code, 404 , '404 for view with no record' );
             $res = $cb->(GET "/$controller/555/view");
             is( $res->code, 404 , '404 for view with no record' );
+            $res = $cb->(POST "/$controller/5/edit", [ name => 'Not Jurassic Park', owner => 4, tags => [qw/Tag1 Tag2 Tag3/]  ] );
+            $res = $cb->(POST "/$controller/5/edit", [ name => 'Jurassic Park', owner => 4, tags => 1, tags => 2, tags => 3 ] );
+            ok( $res->is_redirect, 'Redirect after POST' );
+            $res = $cb->(GET "/$controller/5/edit");
+            ok( $res->content =~ /selected="selected">Action/ && $res->content =~ /selected="selected">Romance/, 'Selecting many tags' );
          } 
     );
 }
