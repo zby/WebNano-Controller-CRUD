@@ -1,5 +1,5 @@
 Revision history for WebNano::Controller::CRUD
 
-{{NEXT}}
+{{$NEXT}}
     fixed multi selections
 
