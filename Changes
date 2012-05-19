@@ -1,5 +1,8 @@
 Revision history for WebNano::Controller::CRUD
 
-{{$NEXT}}
+0.005     2011-09-27
     fixed multi selections
+
+{{$NEXT}}
+    updated for WebNano 0.007
 

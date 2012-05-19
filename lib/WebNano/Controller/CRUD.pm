@@ -50,7 +50,7 @@ sub columns {
 
 sub _get_parts {
     my $self = shift;
-    my @args = @_;
+    my @args = @{ $self->path };
     my @pks = @{ $self->primary_columns };
     my @ids;
     for my $i ( 0 .. $#pks ){
@@ -72,8 +72,8 @@ sub _get_parts {
 }
 
 around 'local_dispatch' => sub {
-    my( $orig, $self, @args ) = @_;
-    if( my $parsed = $self->_get_parts( @args ) ){
+    my( $orig, $self ) = @_;
+    if( my $parsed = $self->_get_parts() ){
         my $rs = $self->app->schema->resultset( $self->rs_name );
         my $record = $rs->find( @{ $parsed->{ids} } );
         if( ! $record ) {
@@ -85,7 +85,7 @@ around 'local_dispatch' => sub {
         my $method = $parsed->{method};
         return $self->$method( $record, @{ $parsed->{args} } );
     }
-    return $self->$orig( @args );
+    return $self->$orig();
 };
 
 sub index_action { shift->list_action( @_ ) }

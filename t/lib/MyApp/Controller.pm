@@ -2,7 +2,9 @@ package MyApp::Controller;
 
 use Moose;
 use MooseX::NonMoose;
-extends 'WebNano::DirController';
+extends 'WebNano::Controller';
+
+sub search_subcontrollers { 1 }
 
 sub index_action {
     my $self = shift;
