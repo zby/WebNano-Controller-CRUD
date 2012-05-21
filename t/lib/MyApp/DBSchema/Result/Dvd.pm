@@ -84,7 +84,7 @@ __PACKAGE__->has_many(
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
-use overload '""' => sub {$_[0]->name}, fallback => 1;
+#use overload '""' => sub {$_[0]->name}, fallback => 1;
 __PACKAGE__->many_to_many('tags', 'dvdtags' => 'tag');
 
 1;

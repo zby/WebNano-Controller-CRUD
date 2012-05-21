@@ -3,6 +3,10 @@ Revision history for WebNano::Controller::CRUD
 0.005     2011-09-27
     fixed multi selections
 
-{{$NEXT}}
+0.006     2012-05-19
     updated for WebNano 0.007
+
+{{$NEXT}}
+    removed stringification of Dvd (was causing failures)
+
 
