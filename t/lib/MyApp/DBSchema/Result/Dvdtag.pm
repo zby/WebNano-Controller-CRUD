@@ -11,14 +11,14 @@ __PACKAGE__->add_columns(
   "dvd",
   {
     data_type => "INTEGER",
-    default_value => "'0'",
+    default_value => '0',
     is_nullable => 0,
     size => undef,
   },
   "tag",
   {
     data_type => "INTEGER",
-    default_value => "'0'",
+    default_value => '0',
     is_nullable => 0,
     size => undef,
   },
